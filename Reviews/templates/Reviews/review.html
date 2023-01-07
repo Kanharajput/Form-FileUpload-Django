@@ -14,11 +14,13 @@
         <!--it will generate the token and add it with the form, submit form and see source using inspect token will be there-->
         {% csrf_token %}  
         <!-- if error occurs then class name be form-control errors if not then only form-control-->
-        <div class = "form-control {% if form.user_name.errors %}errors{% endif %}">     
-            <!--another way to get value out of the form and using this we put label before or after username-->
-            {{form.user_name.label_tag}}             <!--get the label on screen first-->
-            {{form.user_name}}                       <!--get the user_name input field then -->                       
-            {{form.user_name.errors}}                <!--error after input field-->
+        <div class = "form-control {% if form.user_name.errors %}errors{% endif %}">    
+            <!--getting all the fields out of form--> 
+            {% for field in form %}
+                {{field.label_tag}}             <!--get the label on screen first-->
+                {{field}}                       <!--get the user_name input field then -->                       
+                {{field.errors}}                <!--error after input field-->
+            {% endfor %}
         </div>
         <button>Send</button>            <!--by default this button type is submit-->
     </form>
