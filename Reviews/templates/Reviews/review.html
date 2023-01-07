@@ -7,6 +7,9 @@
     <title>Review</title>
 </head>
 <body>
+    {% if has_error %}
+        <p>Invalid form . Please fill the Your Name field.</p>
+    {% endif %}
     <!--action is used to pass the url at which this request is sent, here / means the host url , http://127.0.0.1:8000/-->
     <form action="/" method="POST">     
         <!--it will generate the token and add it with the form, submit form and see source using inspect token will be there-->

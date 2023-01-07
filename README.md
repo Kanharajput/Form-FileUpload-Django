@@ -12,3 +12,8 @@ CSRF Token:
     - Scenario : Let say, a Bank site is forged by someone and forged site is looked very similar to actual site and also it's url is very much similar. Then a customer comes to the site and send money to his friend using that forged site till this all work fine but after this, the people who forged the site change the recepient account no with him  in the request and server also don't identified this and the transaction successed. 
     - This fraud can be protected by csrf token. How ? Server generate a token automatically and put it with the form, now after submiting the form, server check the request, if the token is found then only it pass the request otherwise the operation is failed.
     - In the whole scenario we have only one server but two site one is real and one is fake so csrf token let the server identify that from which site the request is coming.
+
+
+MANUALLY REVIEW THE FORM DATA:
+- we can manually valide the form data, but it not make any sense. For different forms in different template we have to do the same work again and again.
+- Django provide Form class to work with form and validate them also.
