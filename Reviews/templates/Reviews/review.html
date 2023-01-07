@@ -7,7 +7,8 @@
     <title>Review</title>
 </head>
 <body>
-    <form method="POST">
+    <!--action is used to pass the url at which this request is sent, here / means the host url , http://127.0.0.1:8000/-->
+    <form action="/" method="POST">     
         <!--it will generate the token and add it with the form, submit form and see source using inspect token will be there-->
         {% csrf_token %}              
         <label for="name_inp">Your Name</label>            <!--for : for which input this label is written-->
