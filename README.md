@@ -17,3 +17,10 @@ CSRF Token:
 MANUALLY REVIEW THE FORM DATA:
 - we can manually valide the form data, but it not make any sense. For different forms in different template we have to do the same work again and again.
 - Django provide Form class to work with form and validate them also.
+
+
+WHEN ERRORS OCCURS:
+- Actually this errors will never gonna occur because if we set a field then django will let us submit the form with an empty value and it will never reach to the server 
+- Here django will by default set the field required=True, so we will never going to see that error message when the field is empty. 
+- But using a trick we see it we go to the inspect of the page change the source and then make that required=False and now we can submit the form and see the error
+- Which is not possible for an user why an user will do such thing it is the course that's why I am doing it otherwise it is not making any sense to me.
