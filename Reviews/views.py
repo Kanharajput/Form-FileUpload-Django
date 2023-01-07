@@ -16,9 +16,13 @@ def review(request):
             print(form.cleaned_data)       # cleaned_data is a dictionary having user entered data in key-value pair
             return HttpResponseRedirect("/thank-you")        # / denote the host url, good practise to redirect rather then directly render thank-you page here
 
-    # below code is for GET request
-    form = ReviewForm()          # initiate the form
-    return render(request,'Reviews/review.html',{'form':form})            # for GET request this review.html is render
+    else:
+        # if the request is GET then create a new form
+        form = ReviewForm()          # initiate the form
+    
+    # if the is_valid returns false, then it will send the pre entered form with pre-entered values and also the errors
+    # it show an error when the field is empty to check the error open elements from inspect and remove required from user_name field
+    return render(request,'Reviews/review.html',{'form':form})            
 
 
 def thank_you(request):
