@@ -24,3 +24,9 @@ WHEN ERRORS OCCURS:
 - Here django will by default set the field required=True, so we will never going to see that error message when the field is empty. 
 - But using a trick we see it we go to the inspect of the page change the source and then make that required=False and now we can submit the form and see the error
 - Which is not possible for an user why an user will do such thing it is the course that's why I am doing it otherwise it is not making any sense to me.
+
+STYLING ELEMENTS WHICH ARE PROVIDED BY DJANGO IN FORM
+- Those elements also a id to see their id visit the page which we want to style
+- Inspect the page and then open the Elements window and check the html code 
+- That code consist the html code of the elements injected by django , they also have id
+- We can use that id to style the elements
