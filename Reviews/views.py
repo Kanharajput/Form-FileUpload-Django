@@ -15,13 +15,9 @@ def review(request):
         # nothing needs to change here this is_valid function works for all the field which added right now 
         # that's the beauty of using django forms also fields data is also saved in cleaned_data dictionary
         if form.is_valid():
-            # pass the form field data to model columns
-            review = Review(
-                        username = form.cleaned_data['user_name'],
-                        description = form.cleaned_data['description'],
-                        rating = form.cleaned_data['rating']
-                    )
-            review.save()                # save the data to the database
+            # if we are using ModelForm then there is no need to create a Model instance pass the value
+            # we can directly call save on form
+            form.save()                # save the data to the database
             return HttpResponseRedirect("/thank-you")        # / denote the host url, good practise to redirect rather then directly render thank-you page here
 
     else:
