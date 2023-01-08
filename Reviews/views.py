@@ -6,9 +6,11 @@ from .models import Review
 # Create your views here.
 
 def review(request):
+    # get the instance of the entry which we want to update
+    existing_data = Review.objects.get(id=1)
     # there are two different request coming to this view so check for POST as POST have the data
     if request.method == "POST":      
-        form = ReviewForm(request.POST)                 # getting form data from POST method
+        form = ReviewForm(request.POST,instance=existing_data)                 # getting form data from POST method
         
         # if the form is valid render thank-you page
         # django automatically check the form for it's validness
@@ -21,8 +23,8 @@ def review(request):
             return HttpResponseRedirect("/thank-you")        # / denote the host url, good practise to redirect rather then directly render thank-you page here
 
     else:
-        # if the request is GET then create a new form
-        form = ReviewForm()          # initiate the form
+        # create the from using existing_data instance 
+        form = ReviewForm(instance=existing_data)          # initiate the form
     
     # if the is_valid returns false, then it will send the pre entered form with pre-entered values and also the errors
     # it show an error when the field is empty to check the error open elements from inspect and remove required from user_name field
