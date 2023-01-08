@@ -4,6 +4,7 @@ from .forms import ReviewForm
 from .models import Review
 from django.views import View
 from django.views.generic import TemplateView
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -45,4 +46,16 @@ class AllReviewClass(TemplateView):
         context = super().get_context_data(**kwargs)
         reviews = Review.objects.all()
         context["reviews"] = reviews
+        return context
+
+class DetailedReviewClass(TemplateView):
+    template_name = "Reviews/detail_review.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = kwargs['slug']          # url slug can be accessed by kwargs
+
+        # getting the clicked review entry
+        clicked_review = get_object_or_404(Review,id=slug)      # found object return or return 404 object
+        context["clicked_review"] = clicked_review
         return context
