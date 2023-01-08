@@ -1,12 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .forms import ReviewForm
 from .models import Review
 from django.views import View
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView,DetailView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView,CreateView
 
 # Create your views here.
 
@@ -29,19 +28,15 @@ class ReviewView(View):
         return render(request,'Reviews/review.html',{'form':form})      
 '''
 
-# it automatically handle get and post request
-class ReviewView(FormView):
-    form_class = ReviewForm                     # pass the form class
+# it automatically handle get and post request and save data to database
+class ReviewView(CreateView):
+    model = Review                 # pass model from which it have to create the form
+    fields = "__all__"             # enter fields which should be added in form 
+    #form_class = ReviewForm                     # pass the form class
     template_name = "Reviews/review.html"       # template for GET request, if entered data is not valid it pop the same page with errors, as usual
     success_url = "/thank-you"                  # redirect to the page when data is entered
 
-    # only called when the entered data in the form is valid
-    def form_valid(self, form):                 # what to do when data valid
-        # to directly call the save method the form must be created using ModelForm
-        # otherwise we have initiate the model and pass data manually 
-        # get the data of form using cleaned_data dictionary
-        form.save()
-        return super().form_valid(form)
+
 
 
 # TemplateView is a special class for handling templates in class

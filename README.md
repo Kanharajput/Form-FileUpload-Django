@@ -38,5 +38,8 @@ FORM RENDERING METHODS
     - 2. Using Form class
     - 3. Using ModelForm class 
     - 4. Using FormView
-
+    - 5. Using CreateView        -> it automatically save the data
     - As you go from 1 to 4 each time the django tries to less the code we write, and add some advance functionaly.
+
+CREATE SIMPLE TAKE MODEL AND CREATE A BRAND NEW FORM WITHOUT THE NEED OF FORM MODELFORM OR FORM CLASS
+- But one can pass the ModelForm class as in CreateView we can not write label and error messages 
