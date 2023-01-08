@@ -43,8 +43,13 @@ class ThankYouView(TemplateView):
 class AllReviewClass(ListView):
     template_name = "Reviews/all_review.html"
     model = Review                               # all the entries are now sent to template 
+    context_object_name = "reviews"               # change the by default object_list to reviews
 
-
+    def get_queryset(self):
+        # this is the base query through which we generate our needed query
+        base_query = super().get_queryset()         # django hit the database at last when a single query is generated 
+        entries_rating_gt3 = base_query.filter(rating__gt=3)     # only those entries whose rating is greater 3
+        return entries_rating_gt3
 
 
 
