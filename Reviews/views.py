@@ -2,15 +2,33 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import ReviewForm
 from .models import Review
+from django.views import View
 
 # Create your views here.
 
+# class view
+class ReviewView(View):
+    # called when there is a get request
+    def get(self,request):
+        form = ReviewForm()            # create a new form instance
+        return render(request,'Reviews/review.html',{'form':form})     # render the form
+
+    
+    # automatically called when there is a post request
+    def post(self,request):
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.save()                # save the data to the database
+            return HttpResponseRedirect("/thank-you")
+
+        # if form is not valid render the page with same form instance
+        return render(request,'Reviews/review.html',{'form':form})        
+
+'''
 def review(request):
-    # get the instance of the entry which we want to update
-    existing_data = Review.objects.get(id=1)
     # there are two different request coming to this view so check for POST as POST have the data
     if request.method == "POST":      
-        form = ReviewForm(request.POST,instance=existing_data)                 # getting form data from POST method
+        form = ReviewForm(request.POST)                 # getting form data from POST method
         
         # if the form is valid render thank-you page
         # django automatically check the form for it's validness
@@ -22,14 +40,13 @@ def review(request):
             form.save()                # save the data to the database
             return HttpResponseRedirect("/thank-you")        # / denote the host url, good practise to redirect rather then directly render thank-you page here
 
-    else:
-        # create the from using existing_data instance 
-        form = ReviewForm(instance=existing_data)          # initiate the form
+    else: 
+        form = ReviewForm()          # initiate the form
     
     # if the is_valid returns false, then it will send the pre entered form with pre-entered values and also the errors
     # it show an error when the field is empty to check the error open elements from inspect and remove required from user_name field
     return render(request,'Reviews/review.html',{'form':form})            
-
+'''
 
 def thank_you(request):
     return render(request,"Reviews/thank-you.html")
