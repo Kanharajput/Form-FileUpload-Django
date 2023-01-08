@@ -24,3 +24,15 @@ class ReviewForm(forms.ModelForm):
         # if there are some columns which we don't want use as fields
         # column name passed in execule execuled from form other fields automatically added
         # exclude = ['']              
+        labels = {
+            "username": "Your Name",
+            "desription":"Description",
+            "rating": "Your rating"
+        }
+
+        error_messages = {
+            "username":{
+                "required":"Your name must not be empty",
+                "max_length":"Enter a short name"
+            }
+        }
