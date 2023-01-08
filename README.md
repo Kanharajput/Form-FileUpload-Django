@@ -30,3 +30,13 @@ STYLING ELEMENTS WHICH ARE PROVIDED BY DJANGO IN FORM
 - Inspect the page and then open the Elements window and check the html code 
 - That code consist the html code of the elements injected by django , they also have id
 - We can use that id to style the elements
+
+
+FORM RENDERING METHODS 
+- In this project only we see 4 ways to render and handle the form
+    - 1. Using normal view function.  ->  check code in previous commit deleted for now
+    - 2. Using Form class
+    - 3. Using ModelForm class 
+    - 4. Using FormView
+
+    - As you go from 1 to 4 each time the django tries to less the code we write, and add some advance functionaly.

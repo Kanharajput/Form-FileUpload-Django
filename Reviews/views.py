@@ -6,10 +6,11 @@ from django.views import View
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView,DetailView
+from django.views.generic.edit import FormView
 
 # Create your views here.
 
-# class view
+'''# class view
 class ReviewView(View):
     # called when there is a get request
     def get(self,request):
@@ -26,6 +27,21 @@ class ReviewView(View):
 
         # if form is not valid render the page with same form instance
         return render(request,'Reviews/review.html',{'form':form})      
+'''
+
+# it automatically handle get and post request
+class ReviewView(FormView):
+    form_class = ReviewForm                     # pass the form class
+    template_name = "Reviews/review.html"       # template for GET request, if entered data is not valid it pop the same page with errors, as usual
+    success_url = "/thank-you"                  # redirect to the page when data is entered
+
+    # only called when the entered data in the form is valid
+    def form_valid(self, form):                 # what to do when data valid
+        # to directly call the save method the form must be created using ModelForm
+        # otherwise we have initiate the model and pass data manually 
+        # get the data of form using cleaned_data dictionary
+        form.save()
+        return super().form_valid(form)
 
 
 # TemplateView is a special class for handling templates in class
@@ -44,7 +60,7 @@ class AllReviewClass(ListView):
     template_name = "Reviews/all_review.html"
     model = Review                               # all the entries are now sent to template 
     context_object_name = "reviews"               # change the by default object_list to reviews
-
+    
     def get_queryset(self):
         # this is the base query through which we generate our needed query
         base_query = super().get_queryset()         # django hit the database at last when a single query is generated 
