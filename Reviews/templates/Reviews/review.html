@@ -1,28 +1,18 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'Reviews/review.css' %}">
-</head>
-<body>
-    <!--action is used to pass the url at which this request is sent, here / means the host url , http://127.0.0.1:8000/-->
+{% block title %}Review{% endblock title %}
+{% block link_css %}<link rel="stylesheet" type="text/css" href="{% static 'Reviews/review.css' %}">{% endblock link_css %}
+
+{% block content %}
     <form action="/" method="POST">         
-        <!--it will generate the token and add it with the form, submit form and see source using inspect token will be there-->
         {% csrf_token %}  
-        <!-- if error occurs then class name be form-control errors if not then only form-control-->
         <div class = "form-control {% if form.user_name.errors %}errors{% endif %}">    
-            <!--getting all the fields out of form--> 
             {% for field in form %}
-                {{field.label_tag}}             <!--get the label on screen first-->
-                {{field}}                       <!--get the user_name input field then -->                       
-                {{field.errors}}                <!--error after input field-->
+                {{field.label_tag}}      
+                {{field}}                
+                {{field.errors}}         
             {% endfor %}
         </div>
-        <button>Send</button>            <!--by default this button type is submit-->
+        <button>Send</button>           
     </form>
-</body>
-</html>
+{% endblock content %}
