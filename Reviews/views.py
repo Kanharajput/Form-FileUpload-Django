@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import ReviewForm
-
+from .models import Review
 
 # Create your views here.
 
@@ -15,7 +15,13 @@ def review(request):
         # nothing needs to change here this is_valid function works for all the field which added right now 
         # that's the beauty of using django forms also fields data is also saved in cleaned_data dictionary
         if form.is_valid():
-            print(form.cleaned_data)       # cleaned_data is a dictionary having user entered data in key-value pair
+            # pass the form field data to model columns
+            review = Review(
+                        username = form.cleaned_data['user_name'],
+                        description = form.cleaned_data['description'],
+                        rating = form.cleaned_data['rating']
+                    )
+            review.save()                # save the data to the database
             return HttpResponseRedirect("/thank-you")        # / denote the host url, good practise to redirect rather then directly render thank-you page here
 
     else:
