@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from .forms import ReviewForm
 from .models import Review
 from django.views import View
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -22,11 +23,16 @@ class ReviewView(View):
             return HttpResponseRedirect("/thank-you")
 
         # if form is not valid render the page with same form instance
-        return render(request,'Reviews/review.html',{'form':form})        
-
-def thank_you(request):
-    return render(request,"Reviews/thank-you.html")
+        return render(request,'Reviews/review.html',{'form':form})      
 
 
-
+# TemplateView is a special class for handling templates in class
+class ThankYouView(TemplateView):
+    template_name = "Reviews/thank-you.html"           # this will render the thank-you page
+    
+    # if we want to some data like dictinary then we have to use predefined function
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["message"] = "Successfully pass the data"
+        return context
 
