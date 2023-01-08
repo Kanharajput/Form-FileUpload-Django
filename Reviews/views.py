@@ -5,7 +5,7 @@ from .models import Review
 from django.views import View
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 
 # Create your views here.
 
@@ -52,15 +52,10 @@ class AllReviewClass(ListView):
         return entries_rating_gt3
 
 
-
-class DetailedReviewClass(TemplateView):
+# it match slug with models field and return a matched entry
+# make sure slug name should be pk, so it is identified by DetailView
+# DetailView only useful when there is only one comparison and they may be a primary key
+class DetailedReviewClass(DetailView):
     template_name = "Reviews/detail_review.html"
+    model = Review                      
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        slug = kwargs['slug']          # url slug can be accessed by kwargs
-
-        # getting the clicked review entry
-        clicked_review = get_object_or_404(Review,id=slug)      # found object return or return 404 object
-        context["clicked_review"] = clicked_review
-        return context

@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    {{clicked_review.username}}
+    {{review.username}}
 {% endblock title %}
 
-{% block content %}
-    <h1>{{clicked_review.username}}</h1>
-    <h1>{{clicked_review.description}}</h1>
-    <h1>{{clicked_review.rating}}</h1>
+{% block content %} 
+    <!--DetailView by default return the mathed entry with key name as object or model name in lower-case
+    like here model name is Review so object is review-->
+    <h1>{{review.username}}</h1>
+    <h1>{{review.description}}</h1>
+    <h1>{{review.rating}}</h1>
 {% endblock content %}
 
 
