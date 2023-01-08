@@ -5,6 +5,7 @@ from .models import Review
 from django.views import View
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404
+from django.views.generic import ListView
 
 # Create your views here.
 
@@ -38,15 +39,14 @@ class ThankYouView(TemplateView):
         return context
 
 
-# render review page which have username and rating of all reviews
-class AllReviewClass(TemplateView):
+# ListView to render the list of items/data
+class AllReviewClass(ListView):
     template_name = "Reviews/all_review.html"
+    model = Review                               # all the entries are now sent to template 
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        reviews = Review.objects.all()
-        context["reviews"] = reviews
-        return context
+
+
+
 
 class DetailedReviewClass(TemplateView):
     template_name = "Reviews/detail_review.html"
