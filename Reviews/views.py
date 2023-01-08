@@ -36,3 +36,13 @@ class ThankYouView(TemplateView):
         context["message"] = "Successfully pass the data"
         return context
 
+
+# render review page which have username and rating of all reviews
+class AllReviewClass(TemplateView):
+    template_name = "Reviews/all_review.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        reviews = Review.objects.all()
+        context["reviews"] = reviews
+        return context
