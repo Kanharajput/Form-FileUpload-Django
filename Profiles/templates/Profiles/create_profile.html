@@ -9,8 +9,10 @@
   <link rel="stylesheet" href="{% static "Profiles/style.css" %}">
 </head>
 <body>
-  <form>
-    <input type="file" />
+  <!-- this enctype is must to handle file otherwise that FILES dictionary will not work-->
+  <form action="/profiles/" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="image_name">
     <button>Upload!</button>
   </form>
 </body>
