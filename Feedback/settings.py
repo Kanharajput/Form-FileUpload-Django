@@ -125,3 +125,7 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# this folder is used by database to store user uploaded files, create it manually in Base directory
+# this same way we can upload file through admin panel
+MEDIA_ROOT = BASE_DIR/"Uploads"
