@@ -54,3 +54,6 @@ DATABASES NEVER STORE THE FILES
 - Django store the files on the base folder of os that's user/user-name of pc , but it's not a good idea to store a project files outside of the project folder, so Django provide MEDIA_ROOT , ANY path passed in MEDIA_ROOT will be concluded by django as base folder path to store the files.
 - Rememeber on server also there is os running, so it also possible there, don't be confused like how server have an os or folder and all things but server have all this things.
 - This same concept is also used when we save a file using admin panel that file also saves like this.
+
+TO WORK WITH IMAGES WITH HAVE TO INSTALL PILLOW 
+- command : pip install Pillow
