@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    All Images
+{% endblock title %}
+
+
+{% block content %}
+    <h1> All images uploaded by the user </h1>
+    <ul> 
+        {% for profile in profiles %}
+        <!-- we are not getting the image from database , we are only getting the path of image 
+            and src tag will automatically access the image using the url-->
+        <li> <img src="profile.images.url"> </li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
+
+
