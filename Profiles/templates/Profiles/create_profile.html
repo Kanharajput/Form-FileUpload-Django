@@ -12,7 +12,7 @@
   <!-- this enctype is must to handle file otherwise that FILES dictionary will not work-->
   <form action="/profiles/" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="file" name="image_name">
+    {{form}}
     <button>Upload!</button>
   </form>
 </body>

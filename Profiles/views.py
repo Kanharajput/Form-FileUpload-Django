@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
+from .forms import ProfileForm
 
 
 def storeFile(file):                                      # naive approach to save the file
@@ -10,11 +11,13 @@ def storeFile(file):                                      # naive approach to sa
         for chunk in file.chunks():                       # make chuck of the file means small part
             dest.write(chunk)                             # write a chunk each time
 
+
 # Create your views here.
 class CreateProfileView(View):
     def get(self,request):
-        return render(request,"Profiles/create_profile.html")
+        form = ProfileForm()
+        return render(request,"Profiles/create_profile.html",{"form":form})
 
     def post(self,request):
-        storeFile(request.FILES["image_name"])        # file is the dictionary provided by django to access files
+        storeFile(request.FILES["user_image"])        # file is the dictionary provided by django to access files
         return HttpResponseRedirect("/thank-you")
