@@ -1,25 +1,18 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponseRedirect
-from .forms import ProfileForm
 from .models import UserProfile
+from django.views.generic.edit import CreateView
 
 
 # Create your views here.
-class CreateProfileView(View):
-    def get(self,request):
-        form = ProfileForm()       
-        return render(request,"Profiles/create_profile.html",{"form":form})
-
-    def post(self,request):
-        # valid the form , right now we have only files but if we have files and other data then this is how 
-        # we pass it to Form class for validation 
-        form = ProfileForm(request.POST,request.FILES)
-
-        # if form is valid save the data
-        if form.is_valid():    
-            image = UserProfile(image=request.FILES["user_image"])
-            image.save()
-            return HttpResponseRedirect("/thank-you")
-
-        return render(request,"Profiles/create_profile.html",{"form":form})
+# this will create the form according to model columns and also save data automatically
+# as every field is related with every column so the data which is entered in a field is 
+# directly saved to column thorough which it is created
+# by default it send the form dictionary to the template
+class CreateProfileView(CreateView):
+    model = UserProfile
+    fields = "__all__"
+    template_name = "Profiles/create_profile.html"
+    success_url = "/thank-you"
+    
