@@ -57,3 +57,9 @@ DATABASES NEVER STORE THE FILES
 
 TO WORK WITH IMAGES WITH HAVE TO INSTALL PILLOW 
 - command : pip install Pillow
+
+
+TO SERVE MEDIA FILES WE NEED TO ADD MEDIA_URL
+- MEDIA_URL is url which is used by django to serve the MEDIA_ROOT files there , so that a user can't directyly access the MEDIA_ROOT folder as it is in base directory , so it is not a good option according to security reasons. 
+- MEDIA_URL is just a url which is not seen by the developers and not by the users it is run behind the scene and let the browser security access the MEDIA_ROOT files.
+- Also we have to add this MEDIA_ROOT and MEDIA_URL in project level static files.

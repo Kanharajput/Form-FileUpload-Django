@@ -11,7 +11,7 @@
         {% for profile in profiles %}
         <!-- we are not getting the image from database , we are only getting the path of image 
             and src tag will automatically access the image using the url-->
-        <li> <img src="profile.images.url"> </li>
+        <li> <img src="{{profile.image.url}}"> </li>
         {% endfor %}
     </ul>
 
