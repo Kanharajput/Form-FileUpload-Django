@@ -70,8 +70,17 @@ class DetailedReviewClass(DetailView):
     template_name = "Reviews/detail_review.html"
     model = Review                      
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        clicked_review = self.object                                  # access the object as it is DetailView , we have a particular review
+        request = self.request                                        #  access the request of this url  
+        favourite_id = request.session["favourite_review_id"]            # by default django store the data in string so id is also in string
+        is_favourite = favourite_id == str(clicked_review.id)         # convert id to str as id accessed from session is in string
+        context["is_favourite"] = is_favourite
+        return context                                                # return this context we our made changes
+ 
 
-# class to save the favourite review of user
+# class to save the favourite review of user , this call will only run when we clicked on the favourite button
 class SaveFavourite(View):
     def post(self,request):                              
         fav_review_id = request.POST["review_id"]            # get the review id from form

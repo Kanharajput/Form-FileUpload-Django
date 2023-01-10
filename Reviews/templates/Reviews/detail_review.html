@@ -11,12 +11,18 @@
     <h1>{{review.description}}</h1>
     <h1>{{review.rating}}</h1>
 
-    <form action="/reviews/favourite" method="POST">
-        {% csrf_token %}
-        <!-- not visible to enter as user is not required to fill this field-->
-        <input type="hidden" name="review_id" value="{{review.id}}">    
-        <button>Favourite</button>
-    </form>
+    {% if is_favourite %}
+        <h1>This is my favourite Review</h1>
+    
+    {% else %}
+        <form action="/reviews/favourite" method="POST">
+            {% csrf_token %}
+            <!-- not visible to enter as user is not required to fill this field-->
+            <input type="hidden" name="review_id" value="{{review.id}}">    
+            <button>Favourite</button>
+        </form>
+
+    {% endif %}
 
 {% endblock content %}
 
