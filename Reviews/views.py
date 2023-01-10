@@ -75,10 +75,8 @@ class DetailedReviewClass(DetailView):
 class SaveFavourite(View):
     def post(self,request):                              
         fav_review_id = request.POST["review_id"]            # get the review id from form
-        fav_review = Review.objects.get(pk=fav_review_id)         # get the review using id
         # request having session dictionary to save data
-        # don't store objects error
-        # TypeError at /reviews/favourite, Object of type Review is not JSON serializable
-        request.session["favourite_review"] = fav_review             
+        # store review_id through which we can again access the favourite review
+        request.session["favourite_review_id"] = fav_review_id     
         return HttpResponseRedirect("/reviews/" + fav_review_id)         # again returning to same detail review page
 
