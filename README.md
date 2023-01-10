@@ -70,3 +70,4 @@ TO SERVE MEDIA FILES WE NEED TO ADD MEDIA_URL
 - Sessions let us the save the data which is specific for a user for a fixed period of time.
 - Server have a session identifier and that session identifier is also passed to browser in a cookie through which server identifies an user and can return related preferences/data to that user.
 - This session data is stored in a database or may be in a file.
+- Session not able to store objects, one can store boolean values, numbers , string and even dictionary but not the objects. Under the hood Django takes the session data and covert it into json format, and the objects are eligible to be formated as json. so simply store numbers , strings, dictionary and boolean values.
