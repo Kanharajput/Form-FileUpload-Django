@@ -74,7 +74,8 @@ class DetailedReviewClass(DetailView):
         context = super().get_context_data(**kwargs)
         clicked_review = self.object                                  # access the object as it is DetailView , we have a particular review
         request = self.request                                        #  access the request of this url  
-        favourite_id = request.session["favourite_review_id"]            # by default django store the data in string so id is also in string
+        # access session data using get , if not found then it will throw an error 
+        favourite_id = request.session.get("favourite_review_id")            # by default django store the data in string so id is also in string
         is_favourite = favourite_id == str(clicked_review.id)         # convert id to str as id accessed from session is in string
         context["is_favourite"] = is_favourite
         return context                                                # return this context we our made changes
