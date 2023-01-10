@@ -70,3 +70,12 @@ class DetailedReviewClass(DetailView):
     template_name = "Reviews/detail_review.html"
     model = Review                      
 
+
+# class to save the favourite review of user
+class SaveFavourite(View):
+    def post(self,request):                              
+        review_id = request.POST["review_id"]            # get the review id from form
+        review = Review.objects.get(pk=review_id)         # get the review using id
+        print(review)                                     # print the review object
+        return HttpResponseRedirect("/thank-you")         # return to thank-you page as a response
+
