@@ -134,5 +134,6 @@ MEDIA_ROOT = BASE_DIR/"Uploads"
 MEDIA_URL = "/user-uploads/"
 
 # we can also set the session time period till which , it should survive
-# by default it is two weeks
-# SESSION_COOKIE_AGE = it should be in seconds
+# by default it is two weeks, 
+# it works delete the session in data in just 30 seconds
+SESSION_COOKIE_AGE = 30
