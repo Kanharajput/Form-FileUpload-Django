@@ -36,14 +36,14 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',           # this also needed for session 
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',     # needed for sessions
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -132,3 +132,7 @@ MEDIA_ROOT = BASE_DIR/"Uploads"
 
 # this url can by anything, it depends on developer choice
 MEDIA_URL = "/user-uploads/"
+
+# we can also set the session time period till which , it should survive
+# by default it is two weeks
+# SESSION_COOKIE_AGE = it should be in seconds

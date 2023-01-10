@@ -46,6 +46,7 @@ CREATE SIMPLE TAKE MODEL AND CREATE A BRAND NEW FORM WITHOUT THE NEED OF FORM MO
 
 
 
+"# File uploads in django" 
 AFTER THIS COMMIT WE ARE WORKING ON FILE UPLOADS
 
 DATABASES NEVER STORE THE FILES
@@ -63,3 +64,9 @@ TO SERVE MEDIA FILES WE NEED TO ADD MEDIA_URL
 - MEDIA_URL is url which is used by django to serve the MEDIA_ROOT files there , so that a user can't directyly access the MEDIA_ROOT folder as it is in base directory , so it is not a good option according to security reasons. 
 - MEDIA_URL is just a url which is not seen by the developers and not by the users it is run behind the scene and let the browser security access the MEDIA_ROOT files.
 - Also we have to add this MEDIA_ROOT and MEDIA_URL in project level static files.
+
+
+"# Sessions in Django" 
+- Sessions let us the save the data which is specific for a user for a fixed period of time.
+- Server have a session identifier and that session identifier is also passed to browser in a cookie through which server identifies an user and can return related preferences/data to that user.
+- This session data is stored in a database or may be in a file.
